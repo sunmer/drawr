@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ColorShop</title>
+    <title>Motif</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css" />
@@ -13,26 +13,26 @@
   </head>
   <body>
     <div id="app" class="container">
-      {{ message }}
+      Your ether balance: {{balance}}
       <div class="row">
-        <div class="col-xs-12 col-sm-8 col-sm-push-2">
-          <h1 class="text-center">ColorShop</h1>
+        <div class="col-12">
+          <h1 class="text-center">Motif Shop</h1>
           <hr/>
           <br/>
         </div>
       </div>
 
       <div class="row card-deck">
-        <div class="card mb-4 box-shadow" v-for="color in colors">
+        <div class="card mb-4 box-shadow" v-for="motif in motifs">
           <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Free</h4>
+            <h4 class="my-0 font-weight-normal">Motif</h4>
           </div>
           <div class="card-body">
-            <h2 class="card-title pricing-card-title">{{color.name}}</h2>
+            <h2 class="card-title pricing-card-title">{{motif.name}}</h2>
             <ul class="list-unstyled mt-3 mb-4">
-              <li class="text-muted">Price: {{color.price}}</li>
+              <li class="text-muted">Price: {{motif.price}}</li>
             </ul>
-            <button type="button" class="btn btn-lg btn-block btn-outline-primary btn-adopt" :data-id="color.id">Purchase</button>
+            <button type="button" @click="adopt" class="btn btn-lg btn-primary btn-adopt" :data-id="motif.id">Purchase</button>
           </div>
         </div>
       </div>
@@ -43,7 +43,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="build/js/web3.min.js"></script>
+    <!--<script src="build/js/web3.min.js"></script>-->
     <script src="build/js/truffle-contract.js"></script>
     <script src="build/js/app.js"></script>
   </body>

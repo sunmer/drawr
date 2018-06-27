@@ -1,19 +1,34 @@
 {
-  "name": "pet-shop",
+  "name": "blocomotif",
   "version": "1.0.0",
   "description": "",
-  "main": "truffle.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "dev": "http-server & node-sass -w src/scss/app.scss build/css/app.css",
+    "dev": "http-server & webpack --watch & node-sass -w src/scss/app.scss build/css/app.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/jquery": "^3.3.4",
+    "css-loader": "^0.28.11",
     "http-server": "^0.11.1",
-    "node-sass": "^4.9.0"
+    "node-sass": "^4.9.0",
+    "ts-loader": "^4.4.1",
+    "typescript": "^2.9.2",
+    "vue": "^2.5.16",
+    "vue-class-component": "^6.2.0",
+    "vue-loader": "^15.2.4",
+    "vue-property-decorator": "^6.1.0",
+    "vue-template-compiler": "^2.5.16",
+    "webpack": "^4.12.1",
+    "webpack-cli": "^3.0.8"
+  },
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "truffle": "^4.1.12",
+    "web3": "^0.20.6"
   }
 }

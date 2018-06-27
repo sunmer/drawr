@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "noImplicitAny": false,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "outDir": "build/js",
+        "allowSyntheticDefaultImports": true,
+        "sourceMap": true,
+        "experimentalDecorators": true
+    },
+    "files": [
+        "./src/app.ts",
+        "./src/types.ts"
+    ]
+}
