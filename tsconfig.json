@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "lib": ["es2015", "dom"],
         "target": "es5",
         "noImplicitAny": false,
         "removeComments": true,
@@ -11,6 +12,8 @@
     },
     "files": [
         "./src/app.ts",
-        "./src/types.ts"
+        "./src/types.ts",
+        "./src/store.ts",
+        "./src/getWeb3.ts"
     ]
 }

@@ -1,6 +1,7 @@
 <template>
   <div class="list-motifs">
     <h3>List motifs component</h3>
+    {{web3.balance}}
     <ul>
       <li v-for="motif in motifs" :key="motif.id">
         <p>{{motif}}</p>
@@ -12,33 +13,32 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
-import { Motif } from "../types";
+import { Action, State, Getter } from "vuex-class";
+import { Motif, IWeb3 } from "../types";
 import * as Web3 from "web3";
-
-declare var window: any;
 
 @Component
 export default class ListMotifs extends Vue {
 
-  @Prop() motifs!: Motif[];
-  @Prop() web3Provider!: any;
+  @State motifs: Motif[];
+  @Getter web3: IWeb3;
+  @Action getMotifs: Function;
+  @Action registerWeb3: Function;
+
   @Prop() balance!: undefined;
   @Prop() contracts: {};
   
   created() {
-    if (typeof window.web3 !== "undefined") {
-      this.web3Provider = window.web3.currentProvider;
-    } else {
-      // If no injected web3 instance is detected, fall back to Ganache
-      this.web3Provider = new Web3.providers.HttpProvider("http://localhost:7545");
-    }
-    window.web3 = new Web3(this.web3Provider);
-
-    window.web3.eth.getBalance(
-      window.web3.eth.accounts[0], (error, balance) => {
+    //console.log(this.web3);
+    this.getMotifs();
+    this.registerWeb3();
+    /*this.web3.eth.getBalance(
+      this.web3.eth.accounts[0], (error, balance) => {
         this.balance = balance.c[0];
       }
     )
+    
+    console.log(this.getMotifs().then((data) => console.log(data)));*/
   }
 
 }

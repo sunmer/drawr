@@ -3,3 +3,8 @@ export interface Motif {
   name: string;
   price: string;
 }
+
+export interface IWeb3 {
+  balance: number,
+  coinbase: string
+}

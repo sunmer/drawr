@@ -1,14 +1,14 @@
 import * as jQuery from "jquery";
 import Vue from "vue";
 import ListMotifs from "./components/ListMotifs.vue";
-import * as Web3 from "web3";
+import store from "./store";
 
-declare var window: any;
 
 Vue.config.productionTip = false;
 Vue.config.devtools = true;
 
 const v = new Vue({
+  store,
   el: "#app",
   template: `
     <div>
