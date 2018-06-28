@@ -14,6 +14,7 @@
         "./src/app.ts",
         "./src/types.ts",
         "./src/store.ts",
-        "./src/getWeb3.ts"
+        "./src/getWeb3.ts",
+        "./src/vue-shims.d.ts"
     ]
 }

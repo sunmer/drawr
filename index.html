@@ -12,33 +12,7 @@
     <link href="build/css/app.css" rel="stylesheet">
   </head>
   <body>
-    <div id="app" class="container">
-      Your ether balance: {{balance}}
-      <div class="row">
-        <div class="col-12">
-          <h1 class="text-center">Motif Shop</h1>
-          <hr/>
-          <br/>
-        </div>
-      </div>
-
-      <div class="row card-deck">
-        <div class="card mb-4 box-shadow" v-for="motif in motifs">
-          <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Motif</h4>
-          </div>
-          <div class="card-body">
-            <h2 class="card-title pricing-card-title">{{motif.name}}</h2>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li class="text-muted">Price: {{motif.price}}</li>
-            </ul>
-            <button type="button" @click="adopt" class="btn btn-lg btn-primary btn-adopt" :data-id="motif.id">Purchase</button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
+    <div id="app"></div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>

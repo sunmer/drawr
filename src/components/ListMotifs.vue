@@ -1,12 +1,20 @@
 <template>
   <div class="list-motifs">
     <h3>List motifs component</h3>
-    {{web3.balance}}
-    <ul>
-      <li v-for="motif in motifs" :key="motif.id">
-        <p>{{motif}}</p>
-      </li>
-    </ul>
+    <div class="row card-deck">
+      <div class="card mb-4 box-shadow" v-for="motif in motifs" :key="motif.id">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">Motif</h4>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title pricing-card-title">{{motif.name}}</h2>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li class="text-muted">Price: {{motif.price}}</li>
+          </ul>
+          <button type="button" @click="adopt" class="btn btn-lg btn-primary btn-adopt" :data-id="motif.id">Purchase</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
