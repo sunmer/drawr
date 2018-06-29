@@ -1,17 +1,17 @@
 <template>
   <div class="card mb-4 box-shadow">
     <div class="card-header">
-      <h4 class="my-0 font-weight-normal">Motif</h4>
+      <h4 class="my-0 font-weight-normal">{{motif.name}}</h4>
     </div>
     <div class="card-body">
-      <h2 class="card-title pricing-card-title">{{instance.name}}</h2>
+      <h2 class="card-title pricing-card-title">{{motif.name}}</h2>
       <ul class="list-unstyled mt-3 mb-4">
-        <li class="text-muted">Price: {{instance.price}}</li>
+        <li class="text-muted">Price: {{motif.price}}</li>
       </ul>
       <button 
         class="btn btn-lg btn-primary" 
-        @click="purchase(instance)"
-        :disabled="instance.isPurchased">Purchase</button>
+        @click="purchase(motif)"
+        :disabled="motif.isPurchased">{{motif.isPurchased ? "purchased" : "purchase"}}</button>
     </div>
   </div>
 </template>
@@ -26,14 +26,13 @@ import * as Web3 from "web3";
 @Component
 export default class Motif extends Vue {
 
-  @Prop() instance!: undefined;
+  @Prop() motif!: undefined;
   @Action purchaseMotif: Function;
   
   created() {}
 
-  purchase(instance: IMotif) {
-    this.purchaseMotif(instance);
-    console.log("purchased " + instance);
+  purchase(motif: IMotif) {
+    this.purchaseMotif(motif);
   }
 
 }

@@ -115,7 +115,6 @@ const actions: ActionTree<IState, any> = {
 
 const getters: GetterTree<IState, any> = {
   web3: function(state) {
-    console.log(state);
     return state.web3
   }
 };

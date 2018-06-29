@@ -1,9 +1,7 @@
 <template>
   <div class="list-motifs">
-    <h3>List motifs component</h3>
-    {{contracts.purchase}}
     <div class="row card-deck">
-      <Motif v-for="motif in motifs" :instance="motif" :key="motif.id" />
+      <Motif v-for="motif in motifs" :motif="motif" :key="motif.id" />
     </div>
   </div>
 </template>
