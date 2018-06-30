@@ -1,11 +1,13 @@
+import Vue from "vue";
 import axios from "axios";
 import { ActionContext, ActionTree, GetterTree, MutationTree } from "vuex";
 import { IMotif, IWeb3 } from "./types";
 import getWeb3 from "./getWeb3";
 import Vuex from "vuex";
 
-
 declare var window: any;
+
+Vue.use(Vuex);
 
 export interface IContracts {
   purchase: any
