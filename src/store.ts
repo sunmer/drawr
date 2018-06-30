@@ -17,17 +17,18 @@ interface IState {
   contracts: IContracts;
   motifs: IMotif[];
   web3: IWeb3;
+  modalComponent: string;
 }
 
 const mutations: MutationTree<IState> = {
-  setMotifs(thisState, motifs) {
-    thisState.motifs = motifs;
+  setMotifs(state, motifs) {
+    state.motifs = motifs;
   },
-  registerWeb3Instance(thisState, web3) {
+  registerWeb3Instance(state, web3) {
     // Assigning window.web3 to state.web directly won't work,
     // so we map the properties to a custom object
 
-    thisState.web3 = {
+    state.web3 = {
       coinbase: web3.eth.coinbase,
       balance: undefined,
       currentProvider: web3.currentProvider,
@@ -36,7 +37,7 @@ const mutations: MutationTree<IState> = {
 
     web3.eth.getBalance(
       web3.eth.accounts[0], (error, balance) =>
-        thisState.web3.balance = balance
+        state.web3.balance = balance
     )
 
     web3.eth.getAccounts(function(error, accounts) {
@@ -44,27 +45,33 @@ const mutations: MutationTree<IState> = {
         console.log(error);
       }
 
-      thisState.web3.accounts = accounts;
+      state.web3.accounts = accounts;
     });
   },
-  loadPurchaseContract(thisState, contract) {
-    thisState.contracts.purchase = window["TruffleContract"](contract);
-    thisState.contracts.purchase.setProvider(window.web3.currentProvider);
+  loadPurchaseContract(state, contract) {
+    state.contracts.purchase = window["TruffleContract"](contract);
+    state.contracts.purchase.setProvider(window.web3.currentProvider);
 
-    thisState.contracts.purchase.deployed().then(function(purchaseContract) {
+    state.contracts.purchase.deployed().then(function(purchaseContract) {
       return purchaseContract.getPurchasers.call();
     }).then((purchasers) => {
       for (let i = 0; i < purchasers.length; i++) {
         if (purchasers[i] !== "0x0000000000000000000000000000000000000000") {
-          thisState.motifs[i].isPurchased = true;
+          state.motifs[i].isPurchased = true;
         }
       }
     }).catch(function(err) {
       console.log(err.message);
     });
   },
-  purchaseMotif(thisState, motif) {
+  purchaseMotif(state, motif) {
     state.motifs[state.motifs.indexOf(motif)].isPurchased = true;
+  },
+  showModal(state, name) {
+    state.modalComponent = name;
+  },
+  closeModal(state) {
+    state.modalComponent = undefined;
   }
 };
 
@@ -102,6 +109,12 @@ const actions: ActionTree<IState, any> = {
     }).catch(function(err) {
       console.log(err.message);
     });
+  },
+  showModal(store: ActionContext<IState, any>, name: string) {
+    store.commit("showModal", name);
+  },
+  closeModal(store: ActionContext<IState, any>) {
+    store.commit("closeModal");
   }
 };
 
@@ -119,7 +132,8 @@ const state: IState = {
     coinbase: undefined,
     currentProvider: undefined,
     accounts: []
-  }
+  },
+  modalComponent: undefined
 };
 
 export default new Vuex.Store<IState>({

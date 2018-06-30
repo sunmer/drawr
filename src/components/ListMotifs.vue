@@ -21,24 +21,11 @@ export default class ListMotifs extends Vue {
 
   @Action loadMotifs: Function;
   @State motifs: IMotif[];
-  @Action registerWeb3: Function;
   @State contracts: IContracts;
 
-  
   created() {
     this.loadMotifs();
-    this.registerWeb3();
   }
 
 }
 </script>
-
-<style scoped>
-ul {
-  padding: 0;
-}
-li {
-  display: block;
-  padding: 0;
-}
-</style>
