@@ -15,18 +15,18 @@ import { IMotif, IWeb3 } from "../types";
 import { IContracts } from "../store";
 import Motif from "./Motif.vue";
 
+
 @Component({ components: { Motif }})
 export default class ListMotifs extends Vue {
 
-  @Getter web3: IWeb3;
+  @Action loadMotifs: Function;
+  @State motifs: IMotif[];
   @Action registerWeb3: Function;
   @State contracts: IContracts;
-  @State motifs: IMotif[];
-  @Action getMotifs: Function;
-  @Action loadContracts: Function;
+
   
   created() {
-    this.getMotifs();
+    this.loadMotifs();
     this.registerWeb3();
   }
 

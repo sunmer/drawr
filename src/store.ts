@@ -1,11 +1,9 @@
 import axios from "axios";
-import Vue from "vue";
-import Vuex from "vuex";
 import { ActionContext, ActionTree, GetterTree, MutationTree } from "vuex";
 import { IMotif, IWeb3 } from "./types";
 import getWeb3 from "./getWeb3";
+import Vuex from "vuex";
 
-Vue.use(Vuex);
 
 declare var window: any;
 
@@ -20,7 +18,7 @@ interface IState {
 }
 
 const mutations: MutationTree<IState> = {
-  getMotifs(thisState, motifs) {
+  setMotifs(thisState, motifs) {
     thisState.motifs = motifs;
   },
   registerWeb3Instance(thisState, web3) {
@@ -69,10 +67,10 @@ const mutations: MutationTree<IState> = {
 };
 
 const actions: ActionTree<IState, any> = {
-  getMotifs(store: ActionContext<IState, any>) {
+  loadMotifs(store: ActionContext<IState, any>) {
     axios.get("build/js/motifs.json")
       .then(response =>
-        store.commit("getMotifs", response.data)
+        store.commit("setMotifs", response.data)
       ).catch(error =>
         console.log(error)
       );
@@ -94,14 +92,6 @@ const actions: ActionTree<IState, any> = {
         );
     });
   },
-  loadContracts(store: ActionContext<IState, any>) {
-    axios.get("build/contracts/Purchase.json")
-      .then(response => {
-        store.commit("loadPurchaseContract", response);
-      }).catch(error =>
-        console.log(error)
-      );
-  },
   purchaseMotif(store: ActionContext<IState, any>, motif: IMotif) {
     state.contracts.purchase.deployed().then(function(instance) {
       return instance.purchase(motif.id, { from: state.web3.accounts[0] });
@@ -115,7 +105,7 @@ const actions: ActionTree<IState, any> = {
 
 const getters: GetterTree<IState, any> = {
   web3: function(state) {
-    return state.web3
+    return state.web3;
   }
 };
 

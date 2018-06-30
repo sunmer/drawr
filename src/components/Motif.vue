@@ -5,6 +5,7 @@
     </div>
     <div class="card-body">
       <h2 class="card-title pricing-card-title">{{motif.name}}</h2>
+      <canvas class="image"></canvas>
       <ul class="list-unstyled mt-3 mb-4">
         <li class="text-muted">Price: {{motif.price}}</li>
       </ul>
@@ -39,11 +40,8 @@ export default class Motif extends Vue {
 </script>
 
 <style scoped>
-ul {
-  padding: 0;
-}
-li {
-  display: block;
-  padding: 0;
+.image {
+  width: 100%;
+  height: 200px;
 }
 </style>

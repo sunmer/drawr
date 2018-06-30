@@ -6,8 +6,8 @@ export interface IMotif {
 }
 
 export interface IWeb3 {
-  balance: number,
-  coinbase: string,
-  currentProvider: object,
-  accounts: string[]
+  balance: number;
+  coinbase: string;
+  currentProvider: object;
+  accounts: string[];
 }

@@ -1,27 +1,22 @@
 import Vue from "vue";
-import ListMotifs from "./components/ListMotifs.vue";
+import Vuex from "vuex";
+import VueRouter from "vue-router";
+import { sync } from "vuex-router-sync";
+import IndexPage from "./views/Index.vue";
+import router from "./router";
 import store from "./store";
-
 
 Vue.config.productionTip = false;
 Vue.config.devtools = true;
 
-const v = new Vue({
-  store,
+Vue.use(Vuex);
+Vue.use(VueRouter);
+
+sync(store, router);
+
+new Vue({
   el: "#app",
-  template: `
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <h1 class="text-center">Motif Shop</h1>
-          <hr/>
-          <br/>
-        </div>
-      </div>
-      <list-motifs />
-    </div>
-  `,
-  components: {
-    ListMotifs
-  }
+  router: router,
+  store: store,
+  render: h => h(IndexPage)
 });
